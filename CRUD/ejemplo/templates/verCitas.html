@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} Ver citas{% endblock %}
+
+{% block body %}
+<h1></h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Especialidad</th>
+            <th>Especialista</th>
+            <th>Fecha</th>
+            <th>Lugar</th>
+            <th>Hora</th>
+            <th>Observaciones</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in citas %}
+        <tr>
+            <td>{{ c.cliente }}</td>
+            <td>{{ c.especialidad }}</td>
+            <td>{{ c.especialista }}</td>
+            <td>{{ c.fecha }}</td>
+            <td>{{ c.lugar }}</td>
+            <td>{{ c.hora }}</td>
+            <td>{{ c.observaciones }}</td>
+            <td> <a href="{% url 'actualizarCitas' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
+            <td> <a href="{% url 'eliminarCita' id=c.id %}" class="btn btn-danger ">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock  %}
