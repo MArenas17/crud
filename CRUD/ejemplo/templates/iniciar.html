@@ -1,0 +1,91 @@
+{% extends "./base.html" %}
+{% block body %}
+<div class="row">
+<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+    <h2>REGISTRO DE CLIENTE</h2>
+    <div class="card">
+        <div class="card-body">
+            <form action="registrarcliente/" method="POST">   {%csrf_token %}
+                <div class="form-group">
+                    <input type="number" id="" name="documento"  class="form-control" placeholder="Documento" maxlength="15" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtn" name="nombre"  class="form-control" placeholder="Nombre" maxlength="50" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txta" name="apellido"  class="form-control" placeholder="Apellido" maxlength="50" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="nue" name="edad"  class="form-control" placeholder="Edad" maxlength="3" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="emaail" name="email"  class="form-control" placeholder="Email" maxlength="50" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtc" name="ciudad"  class="form-control" placeholder="Ciudad" maxlength="30" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtg" name="genero"  class="form-control" placeholder="Genero" maxlength="12" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtt" name="telefono"  class="form-control" placeholder="Telefono" maxlength="15" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="dfecha" name="fechanacimiento"  class="form-control" placeholder="Fecha de Nacimiento" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtestado" name="estadocivil"  class="form-control" placeholder="Estado Civil" maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>LISTADO DE CLIENTES</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <th>Email</th>
+                        <th>Ciudad</th>
+                        <th>Genero</th>
+                        <th>Telefono</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Estado Civil</th>
+                        <th colspan="2"> Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in clientes%}
+                    <tr>
+                        <td>{{ c.documento }}</td>
+                        <td>{{ c.nombre }}</td>
+                        <td>{{ c.apellido }}</td>
+                        <td>{{ c.edad }}</td>
+                        <td>{{ c.email }}</td>
+                        <td>{{ c.ciudad }}</td>
+                        <td>{{ c.genero }}</td>
+                        <td>{{ c.telefono }}</td>
+                        <td>{{ c.fechanacimiento }}</td>
+                        <td>{{ c.estadocivil }}</td>
+                        <td> <a href="actualizarcliente/{{ c.documento}}" class="btn btn-info ">Actualizar</a></td>
+                        <td> <a href="eliminarcliente/{{ c.documento}}" class="btn btn-danger ">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+  
+
+  {% endblock%}
+</div>
